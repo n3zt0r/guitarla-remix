@@ -19,6 +19,9 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
+  globals: {
+    process: true,
+  },
 
   // Base config
   extends: ["eslint:recommended"],
