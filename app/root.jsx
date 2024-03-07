@@ -17,9 +17,9 @@ export function meta({ error }) {
     return [
       { charset: "utf-8" },
       {
-        title: "GuitarLA - Guitarra no encontrada",
+        title: `GuitarLA - ${error.statusText}`,
       },
-      { description: "Guitarras, venta de Guitarras, guitarra no encontrada" },
+      { description: `Guitarras, venta de Guitarras, ${error.statusText}` },
       { viewport: "width=device-width,initial-scale=1" },
     ];
   }
