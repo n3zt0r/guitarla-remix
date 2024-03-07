@@ -1,9 +1,29 @@
-import { Meta, Links, Outlet, Scripts, LiveReload } from "@remix-run/react";
+import {
+  Meta,
+  Links,
+  Outlet,
+  Scripts,
+  LiveReload,
+  useRouteError,
+  isRouteErrorResponse,
+  Link,
+} from "@remix-run/react";
 import styles from "~/styles/index.css";
 import Header from "~/components/header";
 import Footer from "~/components/footer";
 
-export function meta() {
+export function meta({ error }) {
+  if (error?.status === 404) {
+    return [
+      { charset: "utf-8" },
+      {
+        title: "GuitarLA - Guitarra no encontrada",
+      },
+      { description: "Guitarras, venta de Guitarras, guitarra no encontrada" },
+      { viewport: "width=device-width,initial-scale=1" },
+    ];
+  }
+
   return [
     { charset: "utf-8" },
     { title: "GuitarLA - Remix" },
@@ -58,3 +78,21 @@ function Document({ children }) {
 }
 
 Document.propTypes;
+
+/****** Manejo de errores ******/
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  if (isRouteErrorResponse(error)) {
+    return (
+      <Document>
+        <p className="error">
+          {error.status} {error.statusText}
+        </p>
+        <Link className="error-enlace" to="/">
+          Tal vez quieras volver a la página principal
+        </Link>
+      </Document>
+    );
+  }
+}
