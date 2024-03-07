@@ -2,6 +2,7 @@ import { Link } from "@remix-run/react";
 
 function Guitarra({ guitarra }) {
   const { descripcion, imagen, precio, url, nombre } = guitarra;
+  const { text: textDescription } = descripcion[0].children[0];
 
   return (
     <div className="guitarra">
@@ -11,7 +12,7 @@ function Guitarra({ guitarra }) {
       ></img>
       <div className="contenido">
         <h3>{nombre}</h3>
-        <p className="descripcion">{descripcion[0].children[0].text}</p>
+        <p className="descripcion">{textDescription}</p>
         <p className="precio">{precio}</p>
 
         <Link className="enlace" to={`/guitarras/${url}`}>
