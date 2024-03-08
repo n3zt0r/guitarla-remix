@@ -2,19 +2,9 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { useLoaderData } from "@remix-run/react";
 import { getPost } from "~/models/posts.server";
 import { formatearFecha } from "~/utils/helpers";
-import styles from "~/styles/blog.css";
-
-export function links() {
-  return [
-    {
-      rel: "stylesheet",
-      href: styles,
-    },
-  ];
-}
 
 export async function loader({ params }) {
-  const postUrl = params["*"];
+  const postUrl = params["postUrl"];
   const post = await getPost(postUrl);
   console.log(post);
 
@@ -43,7 +33,7 @@ function Post() {
   const { url: imageUrl } = imagen.data.attributes;
 
   return (
-    <article className="contenedor post mt-3">
+    <article className="post mt-3">
       <img className="imagen" src={imageUrl} alt={`Imagen blog ${titulo}`} />
       <div className="contenido">
         <h3>{titulo}</h3>
