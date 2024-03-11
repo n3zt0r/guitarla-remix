@@ -38,9 +38,9 @@ function Post() {
       <div className="contenido">
         <h3>{titulo}</h3>
         <p className="fecha">{formatearFecha(publishedAt)}</p>
-        <p className="texto">
+        <div className="texto">
           <BlocksRenderer content={contenido} />
-        </p>
+        </div>
       </div>
     </article>
   );
